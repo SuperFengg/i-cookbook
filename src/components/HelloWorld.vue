@@ -40,19 +40,68 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style lang="scss" scoped>
+// 使用Sass变量
+$primary-color: #42b983;
+$secondary-color: #35495e;
+$font-size-large: 24px;
+$font-size-medium: 16px;
+
+// 使用嵌套语法
+.hello {
+  h1 {
+    color: $primary-color;
+    font-size: $font-size-large;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    margin: 40px 0 0;
+    color: $secondary-color;
+    
+    // 使用&符号引用父选择器
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    
+    li {
+      display: inline-block;
+      margin: 0 10px;
+      
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  // 使用@mixin
+  @mixin button-style {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .demo-button {
+    @include button-style;
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
 }
 </style>
